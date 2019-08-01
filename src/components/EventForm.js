@@ -3,7 +3,7 @@ import * as React from 'react'
 export default function EventForm(props) {
     const { values, onSubmit, onChange } = props
     return (
-        <div className="Create-event-form">
+        <div className="createEventForm">
             <form onSubmit={onSubmit}>
                 <label htmlFor="name">Name:</label>
                 <input type="text" name='name' value={values.name} onChange={onChange}></input>

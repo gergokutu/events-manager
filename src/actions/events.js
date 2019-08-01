@@ -39,3 +39,20 @@ export const createEvent = (data) => dispatch => {
     })
     .catch(console.error)
 }
+
+// fetch event
+export const EVENT_FETCHED = 'EVENT_FETCHED'
+
+const eventFetched = event => ({
+  type: EVENT_FETCHED,
+  event
+})
+
+export const loadEvent = (id) => (dispatch) => {
+
+  request(`${baseUrl}/events/${id}`)
+    .then(response => {
+      dispatch(eventFetched(response.body))
+    })
+    .catch(console.error)
+}
