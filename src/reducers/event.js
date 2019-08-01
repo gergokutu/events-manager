@@ -1,4 +1,5 @@
 import { EVENT_FETCHED } from '../actions/events'
+import { EVENT_UPDATE_SUCCESS } from '../actions/events'
 
 // state = [] » you can check it with state.length
 // it can be state = null » you can check it without .length
@@ -7,6 +8,8 @@ import { EVENT_FETCHED } from '../actions/events'
 const reducer = (state = null, action = {}) => {
   switch (action.type) {
     case EVENT_FETCHED:
+      return action.event
+    case EVENT_UPDATE_SUCCESS:
       return action.event
     default:
       return state

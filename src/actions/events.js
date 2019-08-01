@@ -61,17 +61,35 @@ export const loadEvent = (id) => (dispatch) => {
 // delete an event
 export const EVENT_DELETE_SUCCESS = 'EVENT_DELETE_SUCCESS'
 
-const eventDeleteSuccess = id => ({
+const eventDeleteSuccess = eventId => ({
   type: EVENT_DELETE_SUCCESS,
-  id
+  eventId
 })
 
 export const deleteEvent = (id) => dispatch => {
   request
     .delete(`${baseUrl}/events/${id}`)
-    .then(id => {
-      // console.log("response.body test:", response.body)
-      dispatch(eventDeleteSuccess(id))
+    .then(dispatch(eventDeleteSuccess(id)))
+    .catch(console.error)
+}
+
+// updateEvent
+export const EVENT_UPDATE_SUCCESS = 'EVENT_UPDATE_SUCCESS'
+
+const eventUpdateSuccess = event => ({
+  type: EVENT_UPDATE_SUCCESS,
+  event
+})
+
+// if it breaks change patch to put »
+// because we use that on the server side
+// .put instead of .patch because it breaks...
+export const updateEvent = (id, data) => dispatch => {
+  request
+    .put(`${baseUrl}/events/${id}`)
+    .send(data)
+    .then(response => {
+      dispatch(eventUpdateSuccess(response.body))
     })
     .catch(console.error)
 }

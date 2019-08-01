@@ -13,7 +13,7 @@ const reducer = (state = null, action = {}) => {
     case EVENT_CREATE_SUCCESS:
       return [...state, action.event]
     case EVENT_DELETE_SUCCESS:
-      return state.filter(event => event.id !== action.id)
+      return state.filter(event => event.id !== action.eventId)
     default:
       return state
   }
