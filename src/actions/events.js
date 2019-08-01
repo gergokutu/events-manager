@@ -33,6 +33,7 @@ const eventCreateSuccess = event => ({
 export const createEvent = (data) => dispatch => {
   request
     .post(`${baseUrl}/events`)
+    // data has the form values like name, description, date...
     .send(data)
     .then(response => {
       dispatch(eventCreateSuccess(response.body))
@@ -53,6 +54,24 @@ export const loadEvent = (id) => (dispatch) => {
   request(`${baseUrl}/events/${id}`)
     .then(response => {
       dispatch(eventFetched(response.body))
+    })
+    .catch(console.error)
+}
+
+// delete an event
+export const EVENT_DELETE_SUCCESS = 'EVENT_DELETE_SUCCESS'
+
+const eventDeleteSuccess = id => ({
+  type: EVENT_DELETE_SUCCESS,
+  id
+})
+
+export const deleteEvent = (id) => dispatch => {
+  request
+    .delete(`${baseUrl}/events/${id}`)
+    .then(id => {
+      // console.log("response.body test:", response.body)
+      dispatch(eventDeleteSuccess(id))
     })
     .catch(console.error)
 }

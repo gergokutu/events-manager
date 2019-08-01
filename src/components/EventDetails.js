@@ -2,6 +2,7 @@ import * as React from 'react'
 
 export default function EventDetails(props) {
     const { event } = props
+    console.log('props:', props)
     console.log(props)
     return (
         <div className="eventDetails">
@@ -11,6 +12,7 @@ export default function EventDetails(props) {
               <h1>{event.name}</h1>
               <i>{event.date}</i>
               <p>{event.description}</p>
+              <button onClick={() => props.onDelete()}>Delete Event</button>
             </div>}
         </div>
     )

@@ -14,7 +14,7 @@ class EventsList extends Component {
     <ul>
       {events && events.map(event => 
         <li key={event.id}>
-          <Link to={`/events/${event.id}`}>{event.name}</Link>
+          <Link to={`/events/${event.id}`}>{event.name} ({event.id})</Link>
         </li>)}
       {!events && 'Loading...'}
     </ul>
