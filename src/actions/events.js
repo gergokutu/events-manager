@@ -69,7 +69,16 @@ const eventDeleteSuccess = eventId => ({
 export const deleteEvent = (id) => dispatch => {
   request
     .delete(`${baseUrl}/events/${id}`)
-    .then(dispatch(eventDeleteSuccess(id)))
+    // do not do the following!!!...
+    // it runs the function immediately...
+    // not waiting for the response
+    // .then(dispatch(eventDeleteSuccess(id)))
+    .then(() => {
+      console.log("then test")
+      const action = eventDeleteSuccess(id)
+      console.log("action test:", action)
+      dispatch(action)
+    })
     .catch(console.error)
 }
 
