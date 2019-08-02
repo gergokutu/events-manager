@@ -10,6 +10,7 @@ class EventsList extends Component {
     // destructuring to use just events later
     // '/event/:id' » :id is gonna be the event.id...
     const { events } = this.props
+    console.log('events test', events)
     return (
     <ul>
       {events && events.map(event => 
